@@ -6,15 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
 
-    public float walkSpeed = 4f;
-    public float sprintSpeed = 8f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 1.25f;
+    [SerializeField] float walkSpeed = 4f;
+    [SerializeField] float sprintSpeed = 8f;
+    [SerializeField] float gravity = -9.81f;
+    [SerializeField] float jumpHeight = 1.25f;
 
     public Transform groundCheck;
     public float groundDistance = 0.2f;
     public LayerMask groundMask;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
 
     public float mouseSensitivity = 100;
     public Camera playerCam;
@@ -38,8 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfGrounded();
-
+        
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -62,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * playerSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
+    }
+    void FixedUpdate()
+    {
+        CheckIfGrounded();
     }
 
     void CheckIfGrounded()

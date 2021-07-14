@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickupable : MonoBehaviour
@@ -11,29 +9,25 @@ public class Pickupable : MonoBehaviour
     private Rigidbody rb;
     private bool inAir = false;
 
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
-            
+
         if (GetComponent<BoxCollider>())
             collider = GetComponent<BoxCollider>();
         else
             collider = GetComponent<MeshCollider>();
-        
     }
 
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag == "Wall")
         {
-
         }
-
     }
 
-    void Update()
+    private void Update()
     {
         if (inAir)
         {
