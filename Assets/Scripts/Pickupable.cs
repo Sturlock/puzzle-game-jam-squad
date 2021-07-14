@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickupable : MonoBehaviour
@@ -7,35 +5,30 @@ public class Pickupable : MonoBehaviour
     public bool leaveColliderOn;
     public Transform placement;
     public float throwForce;
-    
+
     private new Collider collider;
     private Rigidbody rb;
     private bool inAir = false;
 
-    float touchedWall;
+    private float touchedWall;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
-            
+
         if (GetComponent<BoxCollider>())
             collider = GetComponent<BoxCollider>();
         else
             collider = GetComponent<MeshCollider>();
-        
     }
 
-
-    
-
-
-    void Update()
+    private void FixedUpdate()
     {
         if (inAir)
         {
-            if (this.transform.position != placement.transform.position)
-                ForceDrop();
+            transform.position = placement.transform.position;
+            
             Debug.Log(placement.transform.localRotation.y);
         }
     }
@@ -79,7 +72,7 @@ public class Pickupable : MonoBehaviour
     public void Throw()
     {
         inAir = false;
-        rb.AddForce(placement.transform.up * (throwForce/2) + (placement.transform.forward * throwForce), ForceMode.Impulse);
+        rb.AddForce(placement.transform.up * (throwForce / 2) + (placement.transform.forward * throwForce), ForceMode.Impulse);
         placement.DetachChildren();
         rb.useGravity = true;
     }

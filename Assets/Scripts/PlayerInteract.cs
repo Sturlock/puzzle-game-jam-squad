@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour
     
     GameObject inHands;
     RaycastHit hit;
-    bool holdingItem;
+    [SerializeField] bool holdingItem;
  
     
 
@@ -25,7 +25,6 @@ public class PlayerInteract : MonoBehaviour
     {
         if (!holdingItem)
         {
-            
             if (Input.GetButtonDown("Fire1"))
             {
                 if (Physics.Raycast(playerCamera.transform.position,
@@ -37,13 +36,9 @@ public class PlayerInteract : MonoBehaviour
                         inHands = GameObject.Find(hit.transform.name);
                         Debug.Log(inHands.name);
                         inHands.GetComponent<Pickupable>().PickUp();
-                        
                     }
-                    
                 }
             }
-
-
         }
         else
         {
