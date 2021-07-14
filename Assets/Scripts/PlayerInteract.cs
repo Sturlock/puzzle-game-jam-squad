@@ -1,39 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
     public Camera playerCamera;
     public float pickupLength;
+    
+    GameObject inHands;
+    RaycastHit hit;
+    bool holdingItem;
+ 
+    
 
-    private GameObject inHands;
-    private RaycastHit hit;
-    private bool holdingItem;
-
-    private void Start()
+    void Start()
     {
         holdingItem = false;
     }
 
+    
+
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        if (!holdingItem && Input.GetButtonDown("Fire1"))
+        if (!holdingItem)
         {
-            if (Physics.Raycast(playerCamera.transform.position,
-                     playerCamera.transform.TransformDirection(Vector3.forward), out hit, pickupLength) && !holdingItem)
+            
+            if (Input.GetButtonDown("Fire1"))
             {
-                if (hit.transform.tag == "Big Object" || hit.transform.tag == "Small Object")
+                if (Physics.Raycast(playerCamera.transform.position,
+                         playerCamera.transform.TransformDirection(Vector3.forward), out hit, pickupLength) && !holdingItem)
                 {
-                    holdingItem = true;
-                    inHands = GameObject.Find(hit.transform.name);
-                    Debug.Log(inHands.name);
-                    inHands.GetComponent<Pickupable>().PickUp();
+                    if (hit.transform.tag == "Big Object" || hit.transform.tag == "Small Object")
+                    {
+                        holdingItem = true;
+                        inHands = GameObject.Find(hit.transform.name);
+                        Debug.Log(inHands.name);
+                        inHands.GetComponent<Pickupable>().PickUp();
+                        
+                    }
+                    
                 }
             }
+
+
         }
         else
         {
-            if (inHands.tag == "Big Object")
+            if(inHands.tag == "Big Object")
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -42,7 +56,7 @@ public class PlayerInteract : MonoBehaviour
                     inHands = null;
                 }
             }
-            else if (inHands.tag == "Small Object")
+            else if(inHands.tag == "Small Object")
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -50,13 +64,20 @@ public class PlayerInteract : MonoBehaviour
                     holdingItem = false;
                     inHands = null;
                 }
-
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    inHands.GetComponent<Pickupable>().Throw();
+                    holdingItem = false;
+                    inHands = null;
+                }
+                
                 if (Input.GetButtonDown("Interact"))
-                    //  Debug.Log("Placing Small Object");
+                  //  Debug.Log("Placing Small Object");
 
-                    if (Input.GetButtonDown("Fire2"))
-                        Debug.Log("Throw Small Object");
+                if (Input.GetButtonDown("Fire2"))
+                    Debug.Log("Throw Small Object");
             }
+
         }
     }
 
@@ -64,4 +85,5 @@ public class PlayerInteract : MonoBehaviour
     {
         holdingItem = false;
     }
+
 }

@@ -1,38 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickupable : MonoBehaviour
 {
     public bool leaveColliderOn;
     public Transform placement;
-
+    public float throwForce;
+    
     private new Collider collider;
     private Rigidbody rb;
     private bool inAir = false;
 
+    float touchedWall;
+
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+            
         if (GetComponent<BoxCollider>())
             collider = GetComponent<BoxCollider>();
         else
             collider = GetComponent<MeshCollider>();
+        
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.transform.tag == "Wall")
-        {
-        }
-    }
 
-    private void Update()
+    
+
+
+    void Update()
     {
         if (inAir)
         {
+            if (this.transform.position != placement.transform.position)
+                ForceDrop();
             Debug.Log(placement.transform.localRotation.y);
         }
+    }
+
+    private void ForceDrop()
+    {
+        placement.DetachChildren();
+        if (!leaveColliderOn)
+            collider.enabled = true;
+        rb.useGravity = true;
+        inAir = false;
+        GameObject.Find("Player").GetComponent<PlayerInteract>().OverrideHoldingItem();
     }
 
     public void PickUp()
@@ -59,5 +74,13 @@ public class Pickupable : MonoBehaviour
         placement.DetachChildren();
         inAir = false;
         transform.tag = "Untagged";
+    }
+
+    public void Throw()
+    {
+        inAir = false;
+        rb.AddForce(placement.transform.up * (throwForce/2) + (placement.transform.forward * throwForce), ForceMode.Impulse);
+        placement.DetachChildren();
+        rb.useGravity = true;
     }
 }
