@@ -64,6 +64,12 @@ public class PlayerInteract : MonoBehaviour
                     holdingItem = false;
                     inHands = null;
                 }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    inHands.GetComponent<Pickupable>().Throw();
+                    holdingItem = false;
+                    inHands = null;
+                }
                 
                 if (Input.GetButtonDown("Interact"))
                   //  Debug.Log("Placing Small Object");

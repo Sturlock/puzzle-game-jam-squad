@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaveColliderOn: 1
   placement: {fileID: 3457418}
+  throwForce: 6
 --- !u!33 &2823090746849120105
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1542,6 +1543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaveColliderOn: 1
   placement: {fileID: 906985797}
+  throwForce: 0
 --- !u!1 &7917103265186430346
 GameObject:
   m_ObjectHideFlags: 0

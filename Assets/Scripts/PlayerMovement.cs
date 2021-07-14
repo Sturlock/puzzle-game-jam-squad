@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfGrounded();
+        
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -62,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * playerSpeed * Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
+        CheckIfGrounded();
     }
 
     void CheckIfGrounded()
