@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     float xRotation = 0f;
     Vector3 velocity;
 
+    private Transform rightHand;
+    private Transform centerHands; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         SprintCheck();
-        Debug.Log(playerSpeed);
 
         float x = Input.GetAxis("Horizontal") * inAirMult;
         float z = Input.GetAxis("Vertical") * inAirMult;
@@ -52,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-        Vector3 move = transform.right * x + transform.forward * z;
-        velocity.y += gravity * Time.deltaTime;
+        Vector3 move = transform.right * x + transform.forward * z;     
+        velocity.y += gravity * Time.deltaTime;     
 
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
@@ -77,9 +79,9 @@ public class PlayerMovement : MonoBehaviour
 
     void SprintCheck()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+         if (Input.GetKey(KeyCode.LeftShift))
             playerSpeed = sprintSpeed;
-        else
-            playerSpeed = walkSpeed;
+         else
+             playerSpeed = walkSpeed;
     }
 }
