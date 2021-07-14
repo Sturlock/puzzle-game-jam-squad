@@ -12,7 +12,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        gameObject.tag = "Interactable";
+        gameObject.tag = "Intractable";
         m_ThisRigidbody = GetComponent<Rigidbody>();
     }
 

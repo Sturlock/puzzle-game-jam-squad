@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Has interact button been pressed whilst interactable object is in front of player?
-        if (Input.GetButtonDown("Fire1") && m_CanInteract == true)
+        if (Input.GetButtonDown("Fire1") && m_CanInteract)
         {
             IInteractable interactComponent = m_RaycastFocus.collider.transform.GetComponent<IInteractable>();
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Has action button been pressed whilst interactable object is in front of player?
-        if (Input.GetButtonDown("Fire3") && m_CanInteract == true)
+        if (Input.GetButtonDown("Fire3") && m_CanInteract)
         {
             IInteractable interactComponent = m_RaycastFocus.collider.transform.GetComponent<IInteractable>();
 
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(m_CameraTransform.position, m_CameraTransform.forward);
 
         // Is interactable object detected in front of player?
-        if (Physics.Raycast(ray, out m_RaycastFocus, 3) && m_RaycastFocus.collider.transform.tag == "Interactable")
+        if (Physics.Raycast(ray, out m_RaycastFocus, 3) && m_RaycastFocus.collider.transform.tag == "Intractable")
         {
             m_CursorImage.color = Color.green;
             m_CanInteract = true;
