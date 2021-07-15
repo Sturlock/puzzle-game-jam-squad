@@ -7,7 +7,7 @@ public class Level1DoorLock : MonoBehaviour
     public GameObject doorLvl1;
     public GameObject puzManager;
     public Vector3 newLocation;
-    
+    float x;
     [SerializeField] LayerMask layerMask;
     [SerializeField] CanvasGroup canvasGroup;
     bool interacted = false;
@@ -19,7 +19,8 @@ public class Level1DoorLock : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("Woah there soldier. " + Time.time);
+        x += Time.fixedTime;
+        Debug.Log(x);
         if (doThing)
         {
             Debug.Log("Yeah man!");
