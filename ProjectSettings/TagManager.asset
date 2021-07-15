@@ -7,7 +7,7 @@ TagManager:
   - Big Object
   - Small Object
   - Wall
-  - Interactable
+  - Intractable
   layers:
   - Default
   - TransparentFX

@@ -6,14 +6,18 @@ public class ItemPickUp : MonoBehaviour, IInteractable
 {
     public bool m_Held = false;
 
-    private Rigidbody m_ThisRigidbody = null;
-    private FixedJoint m_HoldJoint = null;
+    [SerializeField] private Rigidbody m_ThisRigidbody = null;
+    [SerializeField] private FixedJoint m_HoldJoint = null;
+
+    GameObject go;
 
 
     private void Start()
     {
+
         gameObject.tag = "Intractable";
         m_ThisRigidbody = GetComponent<Rigidbody>();
+        
     }
 
     private void Update()
@@ -23,6 +27,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         {
             m_Held = false;
             m_ThisRigidbody.useGravity = true;
+            go.transform.SetParent(null);
         }
     }
 
@@ -38,10 +43,14 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         {
             m_Held = true;
             m_ThisRigidbody.useGravity = false;
-
+            
             m_HoldJoint = playerScript.m_HandTransform.gameObject.AddComponent<FixedJoint>();
             m_HoldJoint.breakForce = 10000f; // Play with this value
             m_HoldJoint.connectedBody = m_ThisRigidbody;
+            
+       
+            go = m_ThisRigidbody.gameObject;
+            go.transform.SetParent(m_HoldJoint.transform);
         }
     }
 
@@ -56,15 +65,18 @@ public class ItemPickUp : MonoBehaviour, IInteractable
             // Force the object away in the opposite direction of the player
             Vector3 forceDir = transform.position - playerScript.m_HandTransform.position;
             m_ThisRigidbody.AddForce(forceDir * playerScript.m_ThrowForce);
+
         }
     }
 
     // Drop the object
-    private void Drop()
+    public void Drop()
     {
         m_Held = false;
         m_ThisRigidbody.useGravity = true;
-
+        go = m_ThisRigidbody.gameObject;
+        m_ThisRigidbody.freezeRotation = false;
+        go.transform.SetParent(null);
         Destroy(m_HoldJoint);
     }
 }

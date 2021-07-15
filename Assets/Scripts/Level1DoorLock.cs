@@ -10,7 +10,8 @@ public class Level1DoorLock : MonoBehaviour
     
     [SerializeField] LayerMask layerMask;
     [SerializeField] CanvasGroup canvasGroup;
-    bool uiEnable = false;
+    bool interacted = false;
+    [SerializeField] bool doThing = false;
     void Start()
     {
         canvasGroup.alpha = 0;
@@ -18,51 +19,45 @@ public class Level1DoorLock : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Woah there soldier. " + Time.time);
-        if (Input.GetButton("Interact"))
+        //Debug.Log("Woah there soldier. " + Time.time);
+        if (doThing)
         {
             Debug.Log("Yeah man!");
-            if (other.gameObject.transform.name == "KeyL1")
+            if (other.gameObject.transform.name == "KeyL1" && !interacted)
             {
+                ItemPickUp ip = other.gameObject.GetComponent<ItemPickUp>();
+                ip.Drop();
                 
-                other.gameObject.GetComponent<Pickupable>().Place();
                 other.gameObject.transform.position = transform.position;
-
-                GameObject.Find("Player").GetComponent<PlayerInteract>().OverrideHoldingItem();
+                other.gameObject.transform.rotation = transform.rotation;
                 puzManager.GetComponent<PuzzleFinished>().ChangeNextLevelDoor(doorLvl1, newLocation);
+                interacted = true;
+                doThing = false;
+                if (interacted)
+                {
+                    Destroy(ip);
+                    return;
+                }
             }
         }
-        if (other.gameObject.transform.name == "KeyL1")
-        {
-            uiEnable = true;
-        }
-
     }
-    private void OnTriggerExit(Collider other)
+    void Update()
     {
-        if (other.gameObject.transform.name == "KeyL1")
+        if (Input.GetButtonDown("Interact"))
         {
-            uiEnable = false;
+            doThing = true;
+            return;
         }
     }
-
     void FixedUpdate()
     {
-        
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3f, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3f, layerMask) && !interacted)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            if (uiEnable)
-            {
-                canvasGroup.alpha = 1;
-            }
-            else
-            {
-                canvasGroup.alpha = 0;
-            }
+            canvasGroup.alpha = 1;
         }
         else
         {

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform m_CameraTransform = null;
     public Transform m_HandTransform = null;
     [SerializeField] private Image m_CursorImage = null;
-    public float m_ThrowForce = 200f;
+    public float m_ThrowForce = 50;
 
     private RaycastHit m_RaycastFocus;
     private bool m_CanInteract = false;
@@ -25,16 +25,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && m_CanInteract)
         {
             IInteractable interactComponent = m_RaycastFocus.collider.transform.GetComponent<IInteractable>();
-
+            Debug.Log("hit");
             if (interactComponent != null)
             {
                 // Perform object's interaction
                 interactComponent.Interact(this);
+
             }
         }
 
         // Has action button been pressed whilst interactable object is in front of player?
-        if (Input.GetButtonDown("Fire3") && m_CanInteract)
+        if (Input.GetButtonDown("Fire2") && m_CanInteract)
         {
             IInteractable interactComponent = m_RaycastFocus.collider.transform.GetComponent<IInteractable>();
 
