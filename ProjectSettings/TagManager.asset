@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Big Object
-  - Small Object
   - Wall
+  - Pad1
+  - Pad2
   - Intractable
   layers:
   - Default
