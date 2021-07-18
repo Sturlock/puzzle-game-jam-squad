@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && m_CanInteract)
         {
             IInteractable interactComponent = m_RaycastFocus.collider.transform.GetComponent<IInteractable>();
-            Debug.Log("hit");
+            
             if (interactComponent != null)
             {
+                Debug.Log("hit");
                 // Perform object's interaction
                 interactComponent.Interact(this);
 
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(m_CameraTransform.position, m_CameraTransform.forward);
 
         // Is interactable object detected in front of player?
-        if (Physics.Raycast(ray, out m_RaycastFocus, 3) && (m_RaycastFocus.collider.transform.tag == "Intractable" || m_RaycastFocus.collider.transform.tag == "Cup"))
+        if (Physics.Raycast(ray, out m_RaycastFocus, 3) && (m_RaycastFocus.collider.transform.tag == "Intractable" || m_RaycastFocus.collider.transform.tag == "Cup" || m_RaycastFocus.collider.transform.tag == "Simon"))
         {
             m_CursorImage.color = Color.green;
             m_CanInteract = true;

@@ -45,5 +45,6 @@ public class CupScene : MonoBehaviour
         FindObjectOfType<Movement>().enabled = true;
         FindObjectOfType<FirstPersonCamera>().enabled = true;
         player.Stop();
+        Application.Quit();
     }
 }

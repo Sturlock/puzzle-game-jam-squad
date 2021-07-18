@@ -10,6 +10,7 @@ TagManager:
   - Intractable
   - Interactable
   - Cup
+  - Simon
   layers:
   - Default
   - TransparentFX
