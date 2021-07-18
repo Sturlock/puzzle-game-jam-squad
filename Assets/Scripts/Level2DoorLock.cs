@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1DoorLock : MonoBehaviour
+public class Level2DoorLock : MonoBehaviour
 {
     public GameObject lvlDoor;
     public GameObject puzManager;
@@ -26,7 +26,7 @@ public class Level1DoorLock : MonoBehaviour
         if (doThing)
         {
             Debug.Log("Yeah man!");
-            if (other.gameObject.transform.name == "KeyL1" && !interacted)
+            if (other.gameObject.transform.name == "KeyL2" && !interacted)
             {
                 ItemPickUp ip = other.gameObject.GetComponent<ItemPickUp>();
                 ip.Drop();

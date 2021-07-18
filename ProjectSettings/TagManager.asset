@@ -8,6 +8,8 @@ TagManager:
   - Pad1
   - Pad2
   - Intractable
+  - Interactable
+  - Cup
   layers:
   - Default
   - TransparentFX
