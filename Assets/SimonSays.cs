@@ -57,6 +57,6 @@ public class SimonSays : MonoBehaviour, IInteractable
 
     public void Action(PlayerController script)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }
