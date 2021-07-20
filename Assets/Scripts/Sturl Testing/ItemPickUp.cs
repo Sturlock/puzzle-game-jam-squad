@@ -27,7 +27,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         {
             m_Held = false;
             m_ThisRigidbody.useGravity = true;
-            go.transform.SetParent(null);
+            //go.transform.SetParent(null);
         }
     }
 
@@ -49,8 +49,8 @@ public class ItemPickUp : MonoBehaviour, IInteractable
             m_HoldJoint.connectedBody = m_ThisRigidbody;
             
        
-            go = m_ThisRigidbody.gameObject;
-            go.transform.SetParent(m_HoldJoint.transform);
+            //go = m_ThisRigidbody.gameObject;
+            //go.transform.SetParent(m_HoldJoint.transform);
         }
     }
 
