@@ -11,6 +11,8 @@ TagManager:
   - Interactable
   - Cup
   - Simon
+  - Pad3
+  - Pad4
   layers:
   - Default
   - TransparentFX
