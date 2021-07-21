@@ -5,8 +5,8 @@ using UnityEngine;
 public class Level2DoorLock : MonoBehaviour
 {
     public GameObject lvlDoor;
-    public GameObject puzManager;
-    public Vector3 newLocation;
+    public PuzzleFinished puzManager;
+    public GameObject newLocation;
     float x;
     [SerializeField] LayerMask layerMask;
     [SerializeField] CanvasGroup canvasGroup;
@@ -30,10 +30,11 @@ public class Level2DoorLock : MonoBehaviour
             {
                 ItemPickUp ip = other.gameObject.GetComponent<ItemPickUp>();
                 ip.Drop();
-                
-                other.gameObject.transform.position = transform.position;
-                other.gameObject.transform.rotation = transform.rotation;
-                puzManager.GetComponent<PuzzleFinished>().ChangeNextLevelDoor(lvlDoor, newLocation);
+                other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                other.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                other.gameObject.transform.position = newLocation.transform.position;
+                other.gameObject.transform.rotation = newLocation.transform.rotation;
+                puzManager.GetComponent<PuzzleFinished>().ChangeNextLevelDoor(lvlDoor);
                 interacted = true;
                 doThing = false;
                 if (interacted)

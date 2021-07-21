@@ -14,6 +14,7 @@ public class KeyAppear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        key.SetActive(false);
         hit1 = false;
         hit2 = false;
     }

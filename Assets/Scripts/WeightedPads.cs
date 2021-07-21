@@ -14,7 +14,7 @@ public class WeightedPads : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pad = this.gameObject;
     }
     void OnCollisionEnter(Collision collision)
     {

@@ -20,21 +20,15 @@ public class PuzzleFinished : MonoBehaviour
         }
     }
 
-    public void ChangeNextLevelDoor(GameObject desiredObject, Vector3 desiredLocation)
+    public void ChangeNextLevelDoor(GameObject desiredObject)
     {
         objectChanging = desiredObject;
-        startLocation = objectChanging.transform.position;
-        targetLocation = desiredLocation;
-        startTime = Time.time;
+        
     }
 
     private void Change()
     {
-        float t = (Time.time - startTime) / duration;
-        
-        objectChanging.transform.position = new Vector3(Mathf.SmoothStep(startLocation.x, targetLocation.x, t),
-                                                        Mathf.SmoothStep(startLocation.y, targetLocation.y, t),
-                                                        Mathf.SmoothStep(startLocation.z, targetLocation.z, t));
+        objectChanging.GetComponent<Animator>().SetBool("Open", true);
         
         if (objectChanging.transform.position == targetLocation)
             ChangeFinished();
