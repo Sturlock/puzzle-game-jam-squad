@@ -18,8 +18,9 @@ public class SimonSays : MonoBehaviour, IInteractable
     
     [Header("Completed Settings")]
     public Material mComplete;
-    bool completed = false;
+    [SerializeField] bool completed = false;
     [SerializeField] Animator am;
+    [SerializeField] Animator hatch;
     [SerializeField] Animator doors;
 
     void Start()
@@ -81,6 +82,8 @@ public class SimonSays : MonoBehaviour, IInteractable
 
     private IEnumerator Elevator()
     {
+        hatch.SetBool("Open", false);
+        yield return new WaitForSeconds(.1f);
         am.SetTrigger("Go");
         yield return new WaitForSeconds(3f);
         doors.SetBool("Open", true);

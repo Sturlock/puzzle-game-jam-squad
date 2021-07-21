@@ -7,6 +7,8 @@ public class ElevatorMove : MonoBehaviour
     public WeightedPads wp1;
     public WeightedPads wp2;
     Animator am;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class ElevatorMove : MonoBehaviour
     {
         if (wp1.GetHit3() && wp2.GetHit4())
         {
+           
             am.SetTrigger("Go");
         }
     }
