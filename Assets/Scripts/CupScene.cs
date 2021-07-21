@@ -11,7 +11,9 @@ public class CupScene : MonoBehaviour
     public Image image;
     public LayerMask layerMask;
     public bool play;
-    
+    [SerializeField] bool open;
+    [SerializeField] Animator elevator;
+        
 
     // Update is called once per frame
     void Update()
@@ -40,11 +42,14 @@ public class CupScene : MonoBehaviour
 
     IEnumerator Reactivate()
     {
+        open = true;
         yield return new WaitForSeconds(53f);
         image.gameObject.SetActive(true);
         FindObjectOfType<Movement>().enabled = true;
         FindObjectOfType<FirstPersonCamera>().enabled = true;
         player.Stop();
+        yield return new WaitForSeconds(.2f);
+        elevator.SetBool("Open", open);
         //Application.Quit();
     }
 }
