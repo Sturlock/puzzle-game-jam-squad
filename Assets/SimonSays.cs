@@ -33,7 +33,7 @@ public class SimonSays : MonoBehaviour, IInteractable
         for (int i = 0; i < lightOrder.Length; i++)
         {
             lightOrder[i] = Random.Range(0, em.Count);
-            Debug.Log(lightOrder[i]);
+            //Debug.Log(lightOrder[i]);
         }
         
         yield return new WaitForSeconds(1f);

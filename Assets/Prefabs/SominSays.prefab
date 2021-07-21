@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: d9ac0d5ba5355de4e98cc8bb3b1d714e, type: 2}
-  order: 0
+  order: 4
   on: 0
 --- !u!65 &125054223559538870
 BoxCollider:
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: c601e13a2ddf8fe4cbbdf343b176e916, type: 2}
-  order: 0
+  order: 7
   on: 0
 --- !u!65 &974672548343824538
 BoxCollider:
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: 3183a80feaaf7754bac74454d1b8f419, type: 2}
-  order: 0
+  order: 6
   on: 0
 --- !u!65 &1816521557296512382
 BoxCollider:
@@ -911,6 +911,11 @@ MonoBehaviour:
   s3: 0
   s4: 0
   s5: 0
+  mComplete: {fileID: 2100000, guid: 5c2319d28fbcc3741aef04a7e3b723f3, type: 2}
+  completed: 0
+  am: {fileID: 0}
+  hatch: {fileID: 0}
+  doors: {fileID: 0}
 --- !u!65 &1825443817581914175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1085,7 +1090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: 265837f36377a0f4e8e2c771029cab73, type: 2}
-  order: 0
+  order: 8
   on: 0
 --- !u!65 &5523276461099660283
 BoxCollider:
@@ -1261,7 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: c567e0d73e953c9469616eb3a94d8baa, type: 2}
-  order: 0
+  order: 3
   on: 0
 --- !u!65 &6189381673395668602
 BoxCollider:
@@ -1286,7 +1291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6259889345176320697}
   m_Layer: 0
-  m_Name: SominSays1
+  m_Name: SominSays
   m_TagString: Simon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,7 +1304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6743094385166835715}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000005066394}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.31, y: -0.319, z: -1.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1478,7 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: dd71eceaaaa295747bbd5fd31a168fb4, type: 2}
-  order: 0
+  order: 5
   on: 0
 --- !u!65 &7421286942595783836
 BoxCollider:
@@ -1654,7 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: d82e4adc1f55a7e409c146cb34aae791, type: 2}
-  order: 0
+  order: 2
   on: 0
 --- !u!65 &7543909031999513198
 BoxCollider:
@@ -1830,7 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   m1: {fileID: 2100000, guid: a133aa9c648231540ae3531358c4574d, type: 2}
-  order: 0
+  order: 1
   on: 0
 --- !u!65 &7563550792365930183
 BoxCollider:
